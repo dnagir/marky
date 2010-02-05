@@ -1,0 +1,29 @@
+%h1 Listing samples
+
+- for sample in @samples
+  .sample-area
+    .sample-info
+      %h3=h sample.title
+      %p=h sample.description
+
+    .sample-links
+      - [ ["Original", sample.original_image], ["Processed", sample.processed_image ]].each do |label, img|
+        = link_to image_tag(img.url(:listing)), img.url, :title => h("'#{sample.title} - #{label}"), :class => "sample-link"
+
+    .sample-actions
+      = link_to 'Edit',     edit_sample_path(sample)
+      = link_to 'Destroy',  sample, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New sample', new_sample_path
+
+%script{ :type => 'text/javascript' }
+  :plain
+    $(function(){
+      $('.sample-area').each(function(i){
+        $(this).find('a.sample-link').colorbox({
+            slideshow:true,
+            rel: 'sample' + i
+        });
+      });
+    });
+

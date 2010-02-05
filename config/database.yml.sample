@@ -1,0 +1,27 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  database: marky_development
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql
+  encoding: utf8
+  database: marky_test
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+production:
+  adapter: mysql
+  encoding: utf8
+  database: marky
+  pool: 5
+  username: root
+  password:
+  host: db_server
+

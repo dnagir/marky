@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns:svg='http://www.w3.org/2000/svg' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+<head><meta content='application/xhtml+xml;charset=utf-8' http-equiv='Content-type' /><title>Marky - Image Restoration Business support tool</title></head>
+<body>
+<h1 id='marky__image_restoration_business_support_tool'>Marky - Image Restoration Business support tool</h1>
+
+<h1 id='the_project_dependencies'>The project dependencies</h1>
+
+<h2 id='production_dependencies'>Production dependencies</h2>
+
+<ul>
+<li>mysql</li>
+
+<li>attachment_fu script/plugin install scripthttp://github.com/technoweenie/attachment_fu.git</li>
+
+<li>RMagick (image processing). See <a href='#rm_install'>install</a> for Ubuntu.</li>
+</ul>
+
+<h2 id='development_dependencies'>Development dependencies</h2>
+
+<ul>
+<li>maruku gem (documentation generation from Markdown)</li>
+
+<li>ZenTest (for autotest)</li>
+
+<li>autotest-notification</li>
+
+<li>autotest-rails</li>
+</ul>
+
+<h2 id='rm_install'>RMagick Installation</h2>
+
+<p><em>Installation</em></p>
+
+<p>Ubuntu 9.10 Packages (install via apt-get):</p>
+
+<ul>
+<li>imagemagick - image manipulation programs</li>
+
+<li>librmagick-ruby - ImageMagick API for Ruby</li>
+
+<li>libmagickwand-dev - image manipulation library - development files</li>
+</ul>
+
+<p><em>gem installation:</em></p>
+
+<pre><code>james@karmic:~$ sudo gem install rmagick
+Building native extensions.  This could take a while...
+Successfully installed rmagick-2.12.2
+1 gem installed
+Installing ri documentation for rmagick-2.12.2...
+Updating class cache with 2777 classes...
+Installing RDoc documentation for rmagick-2.12.2...</code></pre>
+
+<p><em>Testing</em> Open an irb session and try the following</p>
+
+<pre><code>require &#39;RMagick&#39;
+#=&gt; true
+require &#39;rvg/rvg&#39;
+#=&gt; true
+include Magick
+#=&gt; Object</code></pre>
+
+<h1 id='see_documentation'><a href='index.html'>See Documentation</a></h1>
+</body></html>

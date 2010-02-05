@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns:svg='http://www.w3.org/2000/svg' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+<head><meta content='application/xhtml+xml;charset=utf-8' http-equiv='Content-type' /><title>Marky project - customer use-cases</title><link href='style.css' rel='stylesheet' type='text/css' />
+</head>
+<body>
+<h1 id='scenarios__customer'>Scenarios - Customer</h1>
+
+<h2 id='confirm_order_change'>Confirm order change</h2>
+
+<p>The customer <em>might</em> receive a notification about changes to his order. The notification asks to confirm the order changes and provides the reasons.</p>
+
+<p>So the customer clicks a link from email and:</p>
+
+<ol>
+<li>
+<p>Opens a page with order details.</p>
+</li>
+
+<li>
+<p>Customer chooses one of options:</p>
+
+<ol>
+<li>Confirm.</li>
+
+<li>Clarify.</li>
+</ol>
+</li>
+
+<li>
+<p>If &#8216;Confirm&#8217; is selected then the customer receives automated notification about the confirmation.</p>
+</li>
+
+<li>
+<p>If &#8216;Clarify&#8217;, then customer should leave a comment and proceed.</p>
+</li>
+
+<li>
+<p>Then user goes to Account page.</p>
+</li>
+</ol>
+
+<h2 id='viewchange_user_details'>View/change user details</h2>
+
+<p>Customer can view/change his details. That includes (<em>optional</em>):</p>
+
+<ul>
+<li><em>Title</em></li>
+
+<li>First name and last name</li>
+
+<li>Email address</li>
+</ul>
+
+<h2 id='place_an_order'>Place an order</h2>
+
+<p>(<em>Pretty much the same steps as a Visitor does, except no contact information</em>) On the Order form: 1. Work request: work type (optional - &#8220;I am not sure or custom&#8221;), <em>short description</em>, full description, <em>attached photo</em>. 2. Do you want to add another photo? (if yes go to 2). 3. Confirm the order. 4. Customer goes to the Account page. 5. Customer receives a confirmation notification.</p>
+
+<h2 id='payment'>Pay for the work</h2>
+
+<p>Customer receives a notification re: job has been done and can pay for it.</p>
+
+<ol>
+<li>Customer goes to the order details page (from link in email);</li>
+
+<li>if the order has NO outstanding amount, nothing to do;</li>
+
+<li>customer clicks the &#8220;Pay&#8221; link;</li>
+
+<li>system redirects the customer to external payment provider (PayPal or other);</li>
+
+<li>customer pays on that site on-line;</li>
+
+<li>customer returns to the customer home page;</li>
+
+<li>customer clicks on the needed order;</li>
+
+<li>customer can download all the necessary files included into order;</li>
+</ol>
+
+<h2 id='download_the_work_results'>Download the work results</h2>
+
+<p>Requires a <a href='#payment'>payment</a> to be made.</p>
+
+<h2 id='receive_a_notifications_about_the_work_progress'>Receive a notifications about the work progress</h2>
+
+<p>When status of the order is changed a Customer should receive notifications.</p>
+</body></html>

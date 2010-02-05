@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+    title: one
+    description: one
+    created_at: <%= Time.now.to_s :db %>
+    updated_at: <%= Time.now.to_s :db %>
+    original_image_file_name: before.jpg
+    original_image_content_type: image/jpeg
+    original_image_file_size: 100
+    processed_image_file_name: after.jpg
+    processed_image_content_type: image/jpeg
+    processed_image_file_size: 100
+

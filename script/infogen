@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'maruku'
+
+
+myself = File.dirname(__FILE__)
+markdown_root = myself + '/../doc/info'
+markdown_result = myself + '/../doc/info-html'
+
+mds = Dir.glob( File.join("**", markdown_root, "*.md") )
+
+mds.each do |file|
+  # HOWTO: change the directory from markdown_root to xx_result
+  # HOWTO: better way to change the extension of the file
+  file_res = file.gsub(markdown_root, markdown_result).sub(/\.md$/, '.html')
+  puts "Processing: #{file} => #{file_res}"
+  
+  dir_name = File.dirname(file_res)  
+  Dir.mkdir(dir_name) unless File.directory?(dir_name)
+  
+  out = File.new(file_res, "w")
+  out.puts Maruku.new(File.read file).to_html_document
+  out.close # TODO: Handle exceptions too
+end
+
+
+puts "Processing the CSS"
+FileUtils.copy(markdown_root + '/style.css', markdown_result + '/style.css')
+
+
+puts "Processing the README"
+readme_src = File.dirname(__FILE__) + '/../README'
+readme_file = File.new(markdown_result + '/README.html', "w")
+readme_file.puts Maruku.new(File.read readme_src).to_html_document
+readme_file.close
+
+puts "Done."

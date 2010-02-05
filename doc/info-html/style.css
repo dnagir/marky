@@ -1,0 +1,39 @@
+body {
+  padding: 5px;
+  font-family: "Verdana";
+  font-size: 14px;
+  background-color: #e6e6fa;
+  color: #624343;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #0000ff;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin-bottom: 0px;
+  color: #1a1a1a;
+}
+
+h3, h4 {
+  font-size: 1.2em;
+}
+
+p {
+  margin-bottom: 0px;
+}
+li p {
+  margin: 0px;
+  padding: 0px;
+}
+
+ol, ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+dt {
+  color: gray;
+}
