@@ -13,7 +13,7 @@ class Sample < ActiveRecord::Base
   validates_presence_of :title, :description
   def self.validate_image(which)
     validates_attachment_presence which
-    validates_attachment_content_type which, :content_type => ['image/jpeg', 'image/png']
+    validates_attachment_content_type which, :content_type => ['image/jpeg', 'image/jpg', 'image/gif', 'image/png']
     validates_attachment_size which, :less_than => 2.megabytes
   end
   validate_image :original_image

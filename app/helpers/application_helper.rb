@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def include_all_css
-    stylesheet_link_tag('colorbox', 'site', :cache => true)
+    stylesheet_link_tag('reset', 'colorbox', 'site', :cache => true)
   end
 
   def html_title(value)

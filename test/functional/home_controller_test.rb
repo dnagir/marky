@@ -15,11 +15,6 @@ class HomeControllerTest < ActionController::TestCase
   end
 
 
-  test 'has valid main menu' do
-    get :index
-    assert_select 'ul.main-menu li', { :count => 3 }
-  end
-
   # All the routes tested here
   test 'routes' do
     assert_routing '/', :controller => 'home', :action => 'index'
