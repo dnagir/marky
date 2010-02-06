@@ -8,6 +8,12 @@ class HomeControllerTest < ActionController::TestCase
     assert_select 'a', 'Account'
   end
 
+  [].each do |p|
+    get p
+    assert_response :success
+    assert_select 'h1', p
+  end
+
   test 'public pages ara available' do
     check_page 'contact', /Contact/
     check_page 'terms', /Terms/
@@ -15,7 +21,6 @@ class HomeControllerTest < ActionController::TestCase
   end
 
 
-  # All the routes tested here
   test 'routes' do
     assert_routing '/', :controller => 'home', :action => 'index'
     assert_routing '/contact', :controller => 'home', :action => 'contact'
