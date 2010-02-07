@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
@@ -38,14 +38,16 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  
+
   map.home    '',        :controller => 'home' # map.root :home
   map.contact 'contact', :controller => 'home', :action => 'contact'
   map.terms   'terms',   :controller => 'home', :action => 'terms'
   map.privacy 'privacy', :controller => 'home', :action => 'privacy'
-  
+
   map.resources :samples
-  
+  map.new_order 'order/new',     :controller => 'order', :action => 'new'
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
+
