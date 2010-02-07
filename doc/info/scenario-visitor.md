@@ -32,9 +32,10 @@ Any *Visitor* can navigate to the following pages:
 Place an order
 -----------------------------------------
 On the Order form (Visitor provides enough details to **become a customer** and put an order):
-  1. Contact information (Title, *First name*, *last name*, company name, *email*, phone, *password*).
-  2. Work request: work type (optional - "I am not sure or custom"), *short description*, full description, *attached photo*.
-  3. Do you want to add another photo? (if yes go to 2).
-  4. Confirm the order.
-  5. Customer goes to the Account page.
-  6. Customer receives a confirmation notification.n
+1. Contact information (Title, *First name*, *last name*, company name, *email*, phone, *password*).
+2. Work request: work type (optional - "I am not sure or custom"), *short description*, full description, *attached photo*.
+3. Do you want to add another photo? (if yes go to 2).
+4. Confirm the order.
+5. Customer goes to the Account page.
+6. Customer receives a confirmation notification.
+

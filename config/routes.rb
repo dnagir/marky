@@ -45,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
   map.privacy 'privacy', :controller => 'home', :action => 'privacy'
 
   map.resources :samples
+  map.resources :job_types
   map.new_order 'order/new',     :controller => 'order', :action => 'new'
 
   map.connect ':controller/:action/:id'

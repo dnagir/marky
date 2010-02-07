@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100131004215) do
+ActiveRecord::Schema.define(:version => 20100207103340) do
+
+  create_table "job_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "price",       :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "samples", :force => true do |t|
     t.string   "title"
