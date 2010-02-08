@@ -7,12 +7,16 @@ module ApplicationHelper
   end
 
   def include_all_css
-    stylesheet_link_tag('reset', 'colorbox', 'site', :cache => true)
+    stylesheet_link_tag('reset', 'colorbox', 'formtastic', 'formtastic_changes', 'application', :cache => 'main')
   end
 
   def html_title(value)
     return nil unless value
     "title='#{value.gsub("'", "&quot;")}'"
+  end
+
+  def page_title(title)
+    (title || "#{@controller.controller_name.humanize} - #{@controller.action_name.humanize}")
   end
 
 end

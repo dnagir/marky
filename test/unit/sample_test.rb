@@ -2,6 +2,8 @@ require 'test_helper'
 
 class SampleTest < ActiveSupport::TestCase
   should_validate_presence_of :title, :description
+  should_ensure_length_in_range :title, 5..20
+  should_ensure_length_in_range :description, 10..50
 
   context 'no images attached to sample' do
     setup do

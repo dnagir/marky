@@ -2,36 +2,26 @@ require 'test_helper'
 
 class HomeControllerTest < ActionController::TestCase
 
-  test "home has needed links" do
-    get :index
-    assert_select 'a', 'Samples'
-    assert_select 'a', 'Account'
+  context 'home page' do
+    setup { get :index }
+    should_render_template :index
+    should('have link to samples') do
+      assert_select 'a', 'Samples'
+    end
+    should('be the application root') do
+      assert_routing '/', :controller => 'home', :action => 'index'
+    end
   end
 
-  test 'public pages ara available' do
-    check_page 'contact', /Contact/
-    check_page 'terms', /Terms/
-    check_page 'privacy', /Privacy/
+  [:terms, :privacy, :contact].each do |page|
+    context "visit Home-#{page}" do
+      setup { get page }
+      should_respond_with :success
+      should_render_template page
+      should('be in application root') do
+        assert_routing "/#{page}", :controller => 'home', :action => page.to_s
+      end
+    end
   end
-
-
-  test 'routes' do
-    assert_routing '/', :controller => 'home', :action => 'index'
-    assert_routing '/contact', :controller => 'home', :action => 'contact'
-    assert_routing '/terms', :controller => 'home', :action => 'terms'
-    assert_routing '/privacy', :controller => 'home', :action => 'privacy'
-  end
-
-
-
-  private
-
-  def check_page(page, content)
-    get page
-    assert_response :success
-    assert_select 'h1', content
-  end
-
-
 end
 

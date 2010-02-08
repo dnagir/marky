@@ -1,11 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  description: MyString
+restoration:
+  name: Image Restoration
+  description: Full restoration of an image
   price: 9.99
 
-two:
-  name: MyString
-  description: MyString
-  price: 9.99

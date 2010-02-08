@@ -2,13 +2,15 @@
 %html{ "xmlns" => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", "lang" => "en" }
   %head
     %meta{ "http-equiv" => "content-type", "content" => "text/html;charset=UTF-8" }
-    %title Marky
-    = include_all_css
-    = include_all_js
+    %title&= page_title(@title)
+    != include_all_css
+    != include_all_js
   %body
     #page.wrapper
       = render :partial => 'layouts/header'
       #content
+        %h1&= page_title(@title)
+        = render :partial => 'layouts/message'
         = yield
       = render :partial => "layouts/footer"
 

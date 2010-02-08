@@ -43,11 +43,11 @@ class SamplesControllerTest < ActionController::TestCase
     context "updates sample" do
       setup do
         @sample = samples(:one)
-        put :update, :id => @sample.id, :sample => { :title => 'updated' }
+        put :update, :id => @sample.id, :sample => { :title => 'updated description' }
       end
       should_redirect_to('samples index') { samples_url }
-      should 'update sample' do
-        assert_equal 'updated', @sample.reload.title
+      should 'change attributes' do
+        assert_equal 'updated description', @sample.reload.title
       end
     end
 
@@ -67,7 +67,7 @@ class SamplesControllerTest < ActionController::TestCase
   private
 
   def valid_params
-    { :title => 'ttt', :description => 'desc',
+    { :title => 'short title', :description => 'much longer description',
       :original_image  => fixture_file_upload('images/sample.jpg', 'image/jpeg', true),
       :processed_image => fixture_file_upload('images/sample.jpg', 'image/jpeg', true) }
   end

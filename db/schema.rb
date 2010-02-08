@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20100207103340) do
   create_table "job_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "price",       :limit => 10, :precision => 10, :scale => 0
+    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,8 @@
+%ul
+  - @job_types.each do |job|
+    %li
+      = link_to "#{job.name}, #{number_to_currency job.price} (#{job.description})", edit_job_type_path(job)
+      = link_to 'Delete', job, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New job type', new_job_type_path
+

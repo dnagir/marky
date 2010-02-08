@@ -3,8 +3,8 @@ class CreateJobTypes < ActiveRecord::Migration
     create_table :job_types do |t|
       t.string :name
       t.string :description
-      t.decimal :price
-
+      t.decimal :price, :precision => 8, :scale => 2
+      #t.column 'price', :decimal, :precision => 8, :scale => 2
       t.timestamps
     end
   end
