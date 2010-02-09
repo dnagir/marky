@@ -6,7 +6,7 @@ Main scenarios
 ========================================================
 
 *Visitor* can view job samples
-----------------------------
+---------------------------------
 1. *Visitor* goes to Samples page;
 2. system shows a list of samples;
   - thumbnail of *before* and *after* images
@@ -20,6 +20,7 @@ Main scenarios
 *Visitor* can gather information about the potential work request
 --------------------------------------------------------------
 Any *Visitor* can navigate to the following pages:
+
 - Home
 - Contact (*Owner* name, phone number, email)
 - Samples
@@ -32,6 +33,7 @@ Any *Visitor* can navigate to the following pages:
 *Visitor* can place an order
 -----------------------------------------
 On the Order form (Visitor provides enough details to **become a customer** and put an order):
+
 1. Contact information (Title, *First name*, *last name*, company name, *email*, phone, *password*).
 2. Work request: work type (optional - "I am not sure or custom"), *short description*, full description, *attached photo*.
 3. Do you want to add another photo? (if yes go to 2).
@@ -44,11 +46,12 @@ On the Order form (Visitor provides enough details to **become a customer** and 
 -----------------------------------------
 (*Pretty much the same steps as a Visitor does, except no contact information*)
 On the Order form:
-  1. Work request: work type (optional - "I am not sure or custom"), *short description*, full description, *attached photo*.
-  2. Do you want to add another photo? (if yes go to 2).
-  3. Confirm the order.
-  4. Customer goes to the Account page.
-  5. Customer receives a confirmation notification.
+
+1. Work request: work type (optional - "I am not sure or custom"), *short description*, full description, *attached photo*.
+2. Do you want to add another photo? (if yes go to 2).
+3. Confirm the order.
+4. Customer goes to the Account page.
+5. Customer receives a confirmation notification.
 
 
 *Customer* can confirm order change
@@ -57,6 +60,7 @@ The customer *might* receive a notification about changes to his order.
 The notification asks to confirm the order changes and provides the reasons.
 
 So the customer clicks a link from email and:
+
 1. Opens a page with order details.
 2. Customer chooses one of options:
   1. Confirm.
