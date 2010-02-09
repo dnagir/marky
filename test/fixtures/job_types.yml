@@ -1,7 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-restoration:
-  name: Image Restoration
-  description: Full restoration of an image
-  price: 9.99
-
