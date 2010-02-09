@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100207103340) do
+ActiveRecord::Schema.define(:version => 20100209094933) do
 
   create_table "job_types", :force => true do |t|
     t.string   "name"
@@ -31,5 +31,24 @@ ActiveRecord::Schema.define(:version => 20100207103340) do
     t.string   "processed_image_content_type"
     t.integer  "processed_image_file_size"
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.boolean  "confirmed",         :default => false, :null => false
+    t.boolean  "enabled",           :default => false, :null => false
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company_name"
+    t.string   "phone"
+    t.integer  "permission_level",  :default => 0,     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], :name => "users_email_index", :unique => true
 
 end

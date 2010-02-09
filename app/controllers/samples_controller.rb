@@ -2,7 +2,7 @@ class SamplesController < ApplicationController
   inherit_resources
   actions :index, :new, :create, :edit, :update, :destroy
 
-  before_filter :verify_access, :except => :index
+  before_filter :require_admin, :except => :index
 
   def create
     create! { samples_url }

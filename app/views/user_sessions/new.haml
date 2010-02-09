@@ -1,0 +1,9 @@
+- @title = 'Login'
+
+- semantic_form_for @user_session, :url => user_session_path do |f|
+  = f.error_messages
+  = f.input :email
+  = f.input :password, :as => :password
+  = f.input :remember_me, :as  => :boolean
+  = f.buttons
+

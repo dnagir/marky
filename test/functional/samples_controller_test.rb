@@ -11,7 +11,7 @@ class SamplesControllerTest < ActionController::TestCase
     [:edit, :update, :new, :create, :destroy].each do |method|
       context "#{method} sample" do
         setup { get method }
-        should_respond_with 401
+        should_redirect_to('require login') { login_url }
       end
     end
   end
@@ -33,7 +33,7 @@ class SamplesControllerTest < ActionController::TestCase
 
     context "edit sample" do
       setup do
-        @sample = samples(:one)
+        @sample = Factory.create(:sample)
         get :edit, :id => @sample.id
       end
       should_render_template :edit
@@ -42,7 +42,7 @@ class SamplesControllerTest < ActionController::TestCase
 
     context "updates sample" do
       setup do
-        @sample = samples(:one)
+        @sample = Factory.create(:sample)
         put :update, :id => @sample.id, :sample => { :title => 'updated description' }
       end
       should_redirect_to('samples index') { samples_url }
@@ -53,7 +53,7 @@ class SamplesControllerTest < ActionController::TestCase
 
     context "destroy sample" do
       setup do
-        @sample = samples(:one)
+        @sample = Factory.create(:sample)
         delete :destroy, :id => @sample.id
       end
       should_redirect_to('samples') { samples_url }
@@ -67,9 +67,10 @@ class SamplesControllerTest < ActionController::TestCase
   private
 
   def valid_params
-    { :title => 'short title', :description => 'much longer description',
-      :original_image  => fixture_file_upload('images/sample.jpg', 'image/jpeg', true),
-      :processed_image => fixture_file_upload('images/sample.jpg', 'image/jpeg', true) }
+    Factory.attributes_for(:sample)
+#    { :title => 'short title', :description => 'much longer description',
+#      :original_image  => fixture_file_upload('images/sample.jpg', 'image/jpeg', true),
+#      :processed_image => fixture_file_upload('images/sample.jpg', 'image/jpeg', true) }
   end
 end
 

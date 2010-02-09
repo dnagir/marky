@@ -172,6 +172,7 @@ Production dependencies
 - HAML
 - formtastic + ValidationReflection (http://github.com/redinger/validation_reflection)
 - CanCan
+- Authlogic + authlogic_openid
 
 
 
@@ -193,6 +194,7 @@ Additionally useful:
 License
 ================================
 *TO BE DONE*
-The code can be used for any purpose except deploying it for commercial purposes,
-making competition to the the site owner.
+
+Parts of the code can be used in different applications but should not be deployed to production
+servers for commercial purposes, in order to avoid competition the owner of this web site.
 

@@ -36,7 +36,11 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def login_as_admin
-    @controller.stubs(:verify_access).returns(true)
+    curren_user = Factory.create(:user)
+  end
+
+  def current_user=(user)
+    @controller.stubs(:current_user).returns(user)
   end
 end
 

@@ -2,28 +2,41 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-
-  # See ActionController::RequestForgeryProtection for details
-  # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '865f73a32a581e10617972d9b20c4eff'
-
-  # See ActionController::Base for details
-  # Uncomment this to filter the contents of submitted sensitive data parameters
-  # from your application log (in this case, all fields with names like "password").
-  # filter_parameter_logging :password
+  protect_from_forgery
+  helper_method :current_user_session, :current_user
 
 
   protected
 
-  # Use basic authentication in my realm to get a user object.
-  # Since this is a security filter - return false if the user is not
-  # authenticated.
-  def verify_access
-    authenticate_or_request_with_http_basic("Documents Realm") do |username, password|
-      username == 'admin' && password = 'admin'
+  def require_admin
+    require_user
+  end
+
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
+  end
+
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.user
+  end
+
+  def require_user
+    unless current_user
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to login_url
+      return false
     end
   end
 
+#  def require_no_user
+#    if current_user
+#      store_location
+#      flash[:notice] = "You must be logged out to access this page"
+#      redirect_to root_url
+#      return false
+#    end
+#  end
 end
 

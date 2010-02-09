@@ -2,10 +2,10 @@ class JobTypesController < ApplicationController
   inherit_resources
   actions :index, :new, :create, :edit, :update, :destroy
 
-  before_filter :verify_access
+  before_filter :require_admin
 
   def create
-    create! { job_types_url } # redirect to :index instead of :show
+    create! { job_types_url }
   end
   def update
     update! { job_types_url }

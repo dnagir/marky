@@ -10,7 +10,7 @@ class JobTypesControllerTest < ActionController::TestCase
     [:index, :new, :create, :edit, :update, :destroy].each do |action|
       context "hitting '#{action}'" do
         setup { get action }
-        should_respond_with 401
+        should_redirect_to('login') { login_url }
       end
     end
   end
@@ -32,7 +32,7 @@ class JobTypesControllerTest < ActionController::TestCase
 
     context 'updates the job type' do
       setup do
-        @job = job_types(:restoration)
+        @job = Factory.create(:job_type)
         post :update, :id => @job.id, :job_type => { :name => 'New Name'}
       end
       should_redirect_to('index') { job_types_url }
