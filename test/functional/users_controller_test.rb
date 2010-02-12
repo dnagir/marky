@@ -5,7 +5,7 @@ class UsersControllerTest < ActionController::TestCase
   context 'Open the registration' do
     setup { get :new }
     should_respond_with :success
-    should_render_template :index
+    should_render_template :new
   end
 
   context 'Register with blank fields' do
@@ -27,8 +27,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   [:edit, :update].each do |action|
-    context "Cannot #{action} by non-user" do
-      setup { get :action }
+    context "Doing '#{action}' by non-user" do
+      setup { get action }
       should_redirect_to('login') { login_url }
     end
   end
@@ -36,7 +36,7 @@ class UsersControllerTest < ActionController::TestCase
   context "Update all details" do
     setup do
       @u = Factory.create(:user)
-      current_user = @u
+      @controller.stubs(:current_user).returns(@u)
       post :update, :user => {
         :email => 'new@new.domain.com',
         :first_name => 'updated fn', :last_name => 'updated ln',

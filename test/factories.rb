@@ -1,16 +1,21 @@
+class SampleImagesData
+  def self.sample_jpg
+    @sample_jpg ||= ActionController::TestUploadedFile.new("test/fixtures/images/sample.jpg", 'image/jpg', true)
+    #fixture_file_upload('images/sample.jpg', 'image/jpeg', true)
+  end
+end
 
 Factory.sequence(:name)         { |n| "short name #{n}" }
 Factory.sequence(:description)  { |n| "a bit longer description #{n}" }
 Factory.sequence(:email)        { |n| "email_#{n}@email.com" }
 Factory.sequence(:amount)       { |n| n + 1.11 }
-Factory.sequence(:image)        { |n| ActionController::TestUploadedFile.new("test/fixtures/images/sample.jpg", 'image/jpg', true)  }
-#fixture_file_upload('images/sample.jpg', 'image/jpeg', true)
+
 
 Factory.define :sample do |o|
   o.title           { Factory.next(:name) }
   o.description     { Factory.next(:description) }
-  o.original_image  { Factory.next(:image) }
-  o.processed_image { Factory.next(:image) }
+  o.original_image  { SampleImagesData.sample_jpg }
+  o.processed_image { SampleImagesData.sample_jpg }
 end
 
 Factory.define :job_type do |o|

@@ -16,5 +16,11 @@ class SampleTest < ActiveSupport::TestCase
       assert @sample.errors[:processed_image_file_name]
     end
   end
+  
+  test 'sample from factory is valid' do
+    sample = Factory.build(:sample)
+    assert sample.valid?
+    #puts sample.errors.full_messages    
+  end
 end
 

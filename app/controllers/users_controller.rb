@@ -19,11 +19,11 @@ class UsersController < ApplicationController
 
 
   def edit
-    @user = @current_user
+    @user = current_user
   end
 
   def update
-    @user = @current_user
+    @user = current_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to dashboard_url

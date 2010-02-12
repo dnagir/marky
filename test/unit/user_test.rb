@@ -16,9 +16,8 @@ class UserTest < ActiveSupport::TestCase
     assert u.save
   end
 
-  test 'can NOT confirm user with missing fields' do
-    u = Factory.create(:user)
-    assert !u.save
+  test 'user from factory is valid' do
+    assert Factory.build(:user).valid?
   end
 end
 
