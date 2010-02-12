@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.valid?
     if @user.save
       flash.now[:notice] = "Account registered, pending confirmation!"
       render :action => :confirm
