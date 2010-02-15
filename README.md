@@ -173,6 +173,7 @@ Production dependencies
 - formtastic + ValidationReflection (http://github.com/redinger/validation_reflection)
 - CanCan
 - Authlogic + authlogic_openid
+- Encryptor (http://github.com/shuber/encryptor)
 
 
 

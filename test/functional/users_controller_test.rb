@@ -50,5 +50,6 @@ class UsersControllerTest < ActionController::TestCase
       assert_equal '1111111111', @u.phone
     end
   end
+
 end
 

@@ -24,16 +24,14 @@ class ActionController::IntegrationTest
 
   # Opens the link from the email sent to a user
   def follow_confirmation_email(user)
-    # Mock the hash verification
-    user.expect(:verify_confirmation_key).returns(true)
-
-    get '/profile/confirm', :key => 'bla'
+    get '/users/verify', :key => 'bla'
     assert_response :success
     assert_template :confirm
     user = assigns(:user)
     assert_not_nill user
     # Confirmation page is open, now press confirm!
-    post_via_redirect '/profile/confirm', :key => 'bla'
+    user.stubs(:verify_confirmation_key).returns(true)
+    post_via_redirect '/users/confirm', :key => 'bla'
   end
 
   # Submits the contact information after credentials verification

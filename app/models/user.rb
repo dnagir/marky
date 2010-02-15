@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password, :if => :uses_password?
 
+  def self.retrieve_from(key)
+    nil
+  end
+
   def uses_password?
     !uses_openid?
   end
