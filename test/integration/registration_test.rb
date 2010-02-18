@@ -3,10 +3,8 @@ require 'actions_helper'
 
 class RegistrationTest < ActionController::IntegrationTest
 
-
   context "A visitor registration" do
     setup { go_to_registration }
-
 
     context 'with email/password' do
       setup do
@@ -14,25 +12,16 @@ class RegistrationTest < ActionController::IntegrationTest
       end
       should('be created as inactive user') do
         assert !@user.new_record?
-        assert @user.confirmed == false
-        assert @user.enabled == false
+        assert @user.reload.confirmed == false
       end
       context 'following confirmation email' do
         setup { follow_confirmation_email @user }
         should('activate the user') do
-          assert @user.confirmed == true
-          assert @user.enabled == false
+          assert @user.reload.confirmed == true
         end
       end
-      should('end up on contact info page') { assert_equal '/account', path }
-      context 'providing contact details' do
-        setup { send_contact_info }
-        should('enable user') { assert @user.enabled }
-        should('finish on the order page') { assert_equal new_order_url, path }
-      end
+      should('end up on account page') { assert_equal '/account', path }
     end
-
-
 
     context 'with OpenID' do
       should_eventually('start testing')

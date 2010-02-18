@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def require_http_post
+    self.request.post?
+  end
+  
   def require_admin
     require_user
   end

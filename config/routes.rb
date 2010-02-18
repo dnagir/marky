@@ -48,11 +48,14 @@ ActionController::Routing::Routes.draw do |map|
   map.logout      'logout',   :controller => 'user_sessions', :action => 'destroy'
   map.dashboard   'dashboard',:controller => 'dashboard', :action => 'show'
 
+  map.resources :samples  
   map.resource  :user_session
   map.resource  :registration_confirmation
 
-  map.resources :users
-  map.resources :samples
+  map.resource  :account do |account|
+    account.resources :orders
+  end
+  map.resources :users  
   map.resources :job_types
   map.new_order 'order/new',     :controller => 'order', :action => 'new'
 

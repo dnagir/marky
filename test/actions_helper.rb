@@ -14,24 +14,19 @@ class ActionController::IntegrationTest
   # Fills in the registration form and submits it
   def submit_registration_with (options = {})
     options = Factory.attributes_for(:user).merge(options)
-    post '/users', :user => options
-    assert_response :success
-    assert_template :confirm
-    user = assigns(:user)
-    assert_not_nil user
-    user
+    post '/account', :user => options
+    assert_select 'span', options[:email]
+    return assigns(:user)
   end
 
   # Opens the link from the email sent to a user
   def follow_confirmation_email(user)
-    get '/users/verify', :key => 'bla'
+    get '/accounts/verify', :key => user.confirmation_key
     assert_response :success
-    assert_template :confirm
-    user = assigns(:user)
-    assert_not_nill user
-    # Confirmation page is open, now press confirm!
-    user.stubs(:verify_confirmation_key).returns(true)
-    post_via_redirect '/users/confirm', :key => 'bla'
+    assert_template :verify
+    post_via_redirect '/accounts/verify_details',
+      :key => user.confirmation_key,
+      :user => Factory.attributes_for(:active_user)
   end
 
   # Submits the contact information after credentials verification
