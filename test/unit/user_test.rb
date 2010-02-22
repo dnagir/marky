@@ -68,6 +68,11 @@ class UserTest < ActiveSupport::TestCase
         should('change it') { assert_not_equal @old, @u.crypted_password }
         should('allow saviing') { assert @u.valid? }
       end
+      should('not allow duplicate users') do
+        another = Factory.build(:user, :email => @u.email)
+        assert !another.valid?
+        assert_match /been taken/i, another.errors[:email]
+      end
     end
 
     context 'for a new user' do
