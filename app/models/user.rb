@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name,   :on => :update
   validates_presence_of :phone,       :on => :update
 
-  validates_presence_of :password, :if => :uses_password?
-  validates_confirmation_of :password, :if => :uses_password?
+  validates_presence_of :password
+  validates_confirmation_of :password
 
   def confirmation_key
     data = "#{id.to_s}-#{email}"
@@ -35,14 +35,5 @@ class User < ActiveRecord::Base
     return nil unless found
     key_email == found.email ? found : nil
   end
-
-  def uses_password?
-    !uses_openid?
-  end
-
-  def uses_openid?
-    false
-  end
-
 end
 

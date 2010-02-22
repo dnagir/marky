@@ -28,14 +28,9 @@ Factory.define :user do |o|
   o.email           { Factory.next(:email) }
   o.password        { Factory.next(:email) }
   o.password_confirmation { |o| o.password }
-end
-
-Factory.define :active_user, :class => User do |o|
-  o.email           { Factory.next(:email) }
-  o.password        { Factory.next(:email) }
-  o.password_confirmation { |o| o.password }
+  #o.title           { Factory.next(:name) }  
   o.first_name      { Factory.next(:name) }
   o.last_name       { Factory.next(:name) }
   o.phone           '+1 (2) 3 456 789'
+  #o.company_name    { |o| o.company_name = o.first_name }
 end
-

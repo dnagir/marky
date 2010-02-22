@@ -2,13 +2,14 @@ class ActionController::IntegrationTest
 
   # Just opens the registration page
   def go_to_registration
-    get '/login'
+    get '/account/new'
     assert_response :success
   end
 
   # Just opens the login page
   def go_to_login
-    go_to_registration
+    get '/login'
+    assert_response :success
   end
 
   # Fills in the registration form and submits it

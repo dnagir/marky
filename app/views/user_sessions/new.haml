@@ -2,8 +2,11 @@
 
 - semantic_form_for @user_session, :url => user_session_path do |f|
   = f.error_messages
-  = f.input :email
-  = f.input :password, :as => :password
-  = f.input :remember_me, :as  => :boolean
+  - f.inputs do
+    = f.input :email
+    = f.input :password, :as => :password
+    = f.input :remember_me, :as  => :boolean
   = f.buttons
 
+.register
+  = link_to 'Register', new_account_path

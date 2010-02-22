@@ -10,6 +10,14 @@ class UserTest < ActiveSupport::TestCase
   test 'initial user is valid' do
     assert Factory.build(:user).valid?
   end
+  
+  test 'can save initial user details' do
+    u = User.new(:email => 'abc@email.com', :password => '1234', :password_confirmation => '1234')
+    assert u.save
+    u.reload
+    assert u.email == 'abc@email.com'
+    assert !u.crypted_password.nil?
+  end
 
   test 'can confirm and update user' do
     u = Factory.create(:user)
@@ -49,5 +57,25 @@ class UserTest < ActiveSupport::TestCase
       assert_not_nil user.errors[:email]
     end
   end
+  
+  context 'Validation' do
+    context 'for existing user' do
+      setup { @u = Factory.create(:user) }
+      context 'changing first name only' do
+        setup { @u.first_name = 'james' }
+        should('allow saving') { assert @u.save }
+      end
+    end
+    
+    context 'confirming user' do
+      setup do        
+        @u = Factory.create(:user, :confirmed => false)
+        @u.reload
+        @u.confirmed = true
+      end
+      should('allow saving') { assert @u.save }
+    end
+  end
+  
 end
 

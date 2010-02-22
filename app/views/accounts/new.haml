@@ -1,6 +1,8 @@
-- semantic_form_for @user do |f|
+- @title = 'Registration'
+
+- semantic_form_for @user, :url => { :controller => 'account' } do |f|
   = f.error_messages
-  = f.inputs :email
-  = f.inputs :password, :password_confirmation, :as => :password
+  = f.inputs :email, :password, :password_confirmation
+  = f.inputs :title, :first_name, :last_name, :phone, :company_name
   = f.buttons
 
