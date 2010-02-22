@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  should_validate_presence_of   :email
+  should_validate_presence_of   :email, :first_name, :last_name, :phone
   should_allow_values_for       :email, "q@domain.com", "fn.ln@some.where.co.uk", "12.abc@12.here.com"
   should_not_allow_values_for   :email, "123", "abcd", "@@@"
   should_have_many              :orders
@@ -9,14 +9,6 @@ class UserTest < ActiveSupport::TestCase
 
   test 'initial user is valid' do
     assert Factory.build(:user).valid?
-  end
-
-  test 'can save initial user details' do
-    u = User.new(:email => 'abc@email.com', :password => '1234', :password_confirmation => '1234')
-    assert u.save
-    u.reload
-    assert u.email == 'abc@email.com'
-    assert !u.crypted_password.nil?
   end
 
   test 'can confirm and update user' do

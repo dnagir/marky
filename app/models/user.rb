@@ -7,12 +7,8 @@ class User < ActiveRecord::Base
                   :password, :password_confirmation
   has_many :orders, :dependent => :destroy
 
-  validates_presence_of   :email
+  validates_presence_of   :email, :first_name, :last_name, :phone
   validates_uniqueness_of :email
-
-  validates_presence_of :first_name,  :on => :update
-  validates_presence_of :last_name,   :on => :update
-  validates_presence_of :phone,       :on => :update
 
   # This enables the 'active' magic state in Authlogic
   # confirmed magic state is enabled by default
