@@ -69,6 +69,21 @@ class AccountsControllerTest < ActionController::TestCase
   test 'verification routing' do
     assert_generates '/accounts/verify', :controller => 'accounts', :action => 'verify'
   end
+  
+  context 'Account page for authenticated user' do
+    setup do
+      login_user
+      get :show 
+    end
+    should_respond_with :success
+    should_render_template :show
+    should('set user') { assert assigns(:user) }
+  end
+  
+  context 'Account page for annonymous user' do
+    setup { get :show }  
+    should_redirect_to('login') { login_url }
+  end
 
 end
 

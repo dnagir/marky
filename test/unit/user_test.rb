@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
   test 'initial user is valid' do
     assert Factory.build(:user).valid?
   end
-  
+
   test 'can save initial user details' do
     u = User.new(:email => 'abc@email.com', :password => '1234', :password_confirmation => '1234')
     assert u.save
@@ -31,24 +31,24 @@ class UserTest < ActiveSupport::TestCase
   test 'user from factory is valid' do
     assert Factory.build(:user).valid?
   end
-  
+
   test 'default user is enabled' do
     assert User.new.enabled
   end
-  
+
   test 'confirmation key can be encrypted and decrypted' do
     u1 = Factory.create(:user)
     first = u1.confirmation_key
     u2 = User.from_confirmation_key first
     assert_same u1.id, u2.id
   end
-  
+
   [nil, 123, String, 'wrongyy'].each do |key|
     context "Faked confirmation key #{key}" do
       should('should be invalid') { assert_nil User.from_confirmation_key(key) }
     end
   end
-  
+
   context "User already exists" do
     setup { @existing = Factory.create(:user) }
     should('no be able to save new user with same existing email') do
@@ -57,7 +57,7 @@ class UserTest < ActiveSupport::TestCase
       assert_not_nil user.errors[:email]
     end
   end
-  
+
   context 'Validation' do
     context 'for existing user' do
       setup { @u = Factory.create(:user) }
@@ -65,17 +65,29 @@ class UserTest < ActiveSupport::TestCase
         setup { @u.first_name = 'james' }
         should('allow saving') { assert @u.save }
       end
-    end
-    
-    context 'confirming user' do
-      setup do        
-        @u = Factory.create(:user, :confirmed => false)
-        @u.reload
-        @u.confirmed = true
+      context 'setting a blank password' do
+        setup { @old = @u.crypted_password; @u.password = nil; @u.password_confirmation = nil }
+        should('is ignored') do
+          assert_equal @old, @u.crypted_password
+        end
       end
-      should('allow saving') { assert @u.save }
+      context 'setting a new password' do
+        setup { @old = @u.crypted_password; @u.password = 'abcde'; @u.password_confirmation = 'abcde' }
+        should('change it') { assert_not_equal @old, @u.crypted_password }
+        should('allow saviing') { assert @u.valid? }
+      end
+    end
+
+    context 'for a new user' do
+      setup { @u = User.new }
+      context 'leaving a blank password' do
+        should('not allow saving') do
+          assert !@u.valid?
+          assert @u.errors[:password]
+        end
+      end
     end
   end
-  
+
 end
 

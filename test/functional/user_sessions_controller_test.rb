@@ -12,5 +12,15 @@ class UserSessionsControllerTest < ActionController::TestCase
       assert_select 'div.register a[href=?]', '/account/new'
     end
   end
+  
+  context 'Successful login' do
+    setup do
+        email, pwd = 'here@there.com', '1234'
+        Factory.create(:user, :enabled => true, :confirmed => true,
+            :email => email, :password => pwd, :password_confirmation => pwd)
+        post :create, :user_session => {:email => email, :password => pwd }
+    end    
+    should_redirect_to('account') { account_url }
+  end
 end
 

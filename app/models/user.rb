@@ -3,27 +3,30 @@ require 'base64'
 class User < ActiveRecord::Base
   acts_as_authentic
 
-  attr_accessible :email, :first_name, :last_name, :phone,
+  attr_accessible :email, :title, :first_name, :last_name, :phone, :company_name,
                   :password, :password_confirmation
   has_many :orders, :dependent => :destroy
 
   validates_presence_of   :email
   validates_uniqueness_of :email
-  
+
   validates_presence_of :first_name,  :on => :update
   validates_presence_of :last_name,   :on => :update
   validates_presence_of :phone,       :on => :update
 
-  validates_presence_of :password
-  validates_confirmation_of :password
+  # This enables the 'active' magic state in Authlogic
+  # confirmed magic state is enabled by default
+  def active?
+    enabled
+  end
 
   def confirmation_key
     data = "#{id.to_s}-#{email}"
     crypted = data #TODO: Do the real encryption
     Base64.encode64(crypted)
   end
-  
-  def self.from_confirmation_key(key)  
+
+  def self.from_confirmation_key(key)
     return nil unless key && key.class == String
     crypted = Base64.decode64(key)
     data = crypted #TODO: Do the real decryption

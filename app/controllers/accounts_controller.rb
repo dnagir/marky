@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   filter_parameter_logging :password, :password_confirmation
   #before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user,      :only => [:edit, :update]
+  before_filter :require_user,      :only => [:edit, :update, :show]
 
   def new
     @user = User.new
@@ -33,6 +33,10 @@ class AccountsController < ApplicationController
     end
   end
   
+  def show
+    @user = current_user
+  end
+
   def verify
     @user = User.from_confirmation_key(params[:key])
     if @user
@@ -45,6 +49,6 @@ class AccountsController < ApplicationController
       redirect_to login_url
     end
   end
-  
+
 end
 

@@ -35,8 +35,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def login_as_admin	
-    @controller.stubs(:current_user).returns(Factory.create(:user))
+  def login_user(user = Factory.create(:user, :enabled => true, :confirmed => true))
+    @controller.stubs(:current_user).returns(user)
+  end
+  def login_as_admin
+    login_user
   end
 end
 
